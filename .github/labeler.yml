@@ -1,0 +1,49 @@
+# coding-hermes — default labels
+# This is the canonical list. The scheduler/broth will sync labels
+# across repos using this file as the source of truth.
+
+- name: bug
+  color: d73a4a
+  description: Something is broken or behaves wrong.
+- name: enhancement
+  color: a2eeef
+  description: New feature or capability.
+- name: needs-triage
+  color: 7057ff
+  description: Awaiting operator review.
+- name: foreman-work
+  color: 0e8a16
+  description: Picked up by the foreman — being processed.
+- name: worker-spawned
+  color: 1d76db
+  description: A worker session is currently working this.
+- name: blocked
+  color: b60205
+  description: Cannot proceed without operator input.
+- name: pinned
+  color: fbca04
+  description: Pinned by operator; do not auto-close.
+- name: never-done
+  color: 5319e7
+  description: Perpetual audit task — never auto-close.
+- name: spec-pending
+  color: c5def5
+  description: Needs a spec before implementation.
+- name: docs
+  color: 0075ca
+  description: Documentation-only change.
+- name: chore
+  color: cfd3d7
+  description: Repo maintenance / dependency update.
+- name: security
+  color: b60205
+  description: Security-related — needs review.
+- name: duckbrain
+  color: 008672
+  description: Touches the fleet memory layer.
+- name: scheduler
+  color: e99695
+  description: Touches scheduler config or scheduler API.
+- name: e2e
+  color: d4c5f9
+  description: End-to-end test work.

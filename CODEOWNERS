@@ -1,0 +1,21 @@
+# Default code owners for the coding-hermes org.
+#
+# These rules apply to every repo that includes this file via
+# `# @coding-hermes/.github` symlink or copy. Individual repos can
+# override per-path.
+#
+# Pattern format: <path>  @owner
+# Last matching rule wins.
+
+# Default — operator review required for everything
+*                                           @totalwindupflightsystems
+
+# Skill / fleet infra — broader review
+/skills/                                    @totalwindupflightsystems
+/docs/                                      @totalwindupflightsystems
+/SPEC.md                                    @totalwindupflightsystems
+
+# DuckBrain — memory layer is load-bearing; require explicit sign-off
+/internal/store/                            @totalwindupflightsystems
+/internal/mcp/                              @totalwindupflightsystems
+/docs/schema.md                             @totalwindupflightsystems
