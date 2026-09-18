@@ -1,0 +1,7 @@
+{
+  "name": "Multi-Arch Build (Go)",
+  "description": "Build, test, and release for linux/darwin/windows on amd64+arm64 via the org reusable workflow. Optionally builds a multi-arch container image.",
+  "iconName": "octicon cpu",
+  "categories": ["Go", "Continuous integration"],
+  "filePatterns": ["go.mod$"]
+}
