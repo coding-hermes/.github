@@ -1,0 +1,24 @@
+name: CI (multi-arch)
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  release:
+    types: [published]
+
+jobs:
+  multiarch:
+    # Reusable workflow lives in the org .github repo — one definition, every repo.
+    uses: coding-hermes/.github/.github/workflows/go-multiarch.yml@main
+    with:
+      binary: CHANGE_ME            # e.g. boardctl
+      main: ./cmd/CHANGE_ME        # e.g. ./cmd/boardctl
+      # docker-image: true         # enable when the repo ships a container
+      # dockerfile: ./Dockerfile
+    permissions:
+      contents: write              # release job needs it on tags
+      id-token: write              # build provenance attestation
+      attestations: write
+      packages: write              # GHCR push, only used with docker-image: true

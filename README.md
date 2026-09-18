@@ -99,3 +99,34 @@ make Eduos ship.
 ## 📜 License
 
 Per-repo — see each repo's `LICENSE`. Default for new infra: MIT.
+
+---
+
+## 🏗️ Multi-arch builds (org standard)
+
+Every repo builds for **linux/darwin/windows × amd64/arm64** through ONE shared
+reusable workflow — no per-repo duplication:
+
+```yaml
+jobs:
+  multiarch:
+    uses: coding-hermes/.github/.github/workflows/go-multiarch.yml@main
+    with:
+      binary: boardctl
+      main: ./cmd/boardctl
+      docker-image: true          # optional: multi-arch GHCR image
+    permissions:
+      contents: write
+      id-token: write
+      attestations: write
+      packages: write
+```
+
+- **Binaries** are pure-Go cross-compiled (`CGO_ENABLED=0`) — no QEMU, ~1 min for the
+  whole matrix. Each artifact is arch-verified (`file` + `go version -m`) before upload.
+- **arm64 tests run natively** on GitHub's free `ubuntu-24.04-arm` runner for public repos.
+- **Images** use buildx + QEMU (`linux/amd64,linux/arm64`) and push to GHCR on tags.
+- **Releases**: pushing a `v*` tag attaches one archive per platform + `SHA256SUMS` +
+  a Sigstore build-provenance attestation.
+
+New repos: Actions → *New workflow* → **Multi-Arch Build (Go)** starter.
