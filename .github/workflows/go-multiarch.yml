@@ -200,11 +200,18 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Image name
+        id: img
+        run: |
+          name="${{ inputs.image-name }}"
+          if [[ -z "$name" ]]; then name="${GITHUB_REPOSITORY##*/}"; fi
+          echo "name=$name" >> "$GITHUB_OUTPUT"
+
       - name: Image metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          images: ghcr.io/${{ github.repository_owner }}/${{ inputs.image-name || github.event.repository.name }}
+          images: ghcr.io/${{ github.repository_owner }}/${{ steps.img.outputs.name }}
           tags: |
             type=semver,pattern={{version}}
             type=semver,pattern={{major}}.{{minor}}
